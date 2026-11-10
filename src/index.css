@@ -1,29 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap');
-
 :root {
-  --font-body: 'Manrope', sans-serif;
-  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: system-ui, -apple-system, 'PingFang SC', 'Segoe UI', sans-serif;
+  --font-display: system-ui, -apple-system, 'PingFang SC', 'Segoe UI', sans-serif;
 
-  --ink: #1c2128;
-  --ink-soft: #3a424c;
-  --muted: #6b7380;
-  --page: #f3f4f6;
+  --ink: #050c34;
+  --ink-soft: #2a3158;
+  --muted: #5e6684;
+  --page: #f7f8fb;
   --surface: #ffffff;
+  --sidebar: #f7f8fb;
   --input: #ffffff;
-  --chip: #f0f1f3;
-  --line: #e2e5ea;
-  --track: #1f6f5c;
-  --accent: #1f6f5c;
-  --danger: #b42318;
-  --warn: #9a6700;
-  --radius: 0.5rem;
-  --radius-sm: 0.35rem;
+  --chip: #f2f3f8;
+  --line: #e7e9f1;
+  --input-line: #dfe2ec;
+  --track: #050c34;
+  --accent: #050c34;
+  --danger: #e2582a;
+  --warn: #e2582a;
+  --ok: #0e9f6e;
+  --info: #1f7fd1;
+  --purple: #9b3fd0;
+  --status-green: #0e9f6e;
+  --status-orange: #e2582a;
+  --status-blue: #1f7fd1;
+  --status-purple: #9b3fd0;
+  --status-yellow: #c9891a;
+  --radius: 0.625rem;
+  --radius-sm: 0.5rem;
+  --radius-lg: 1rem;
   --space: 1rem;
   --space-sm: 0.65rem;
+  --sidebar-w: 240px;
 
   font-family: var(--font-body);
+  font-size: 14px;
   line-height: 1.45;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink);
   background: var(--page);
   font-synthesis: none;
@@ -45,7 +56,8 @@ body,
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -54,4 +66,6 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
