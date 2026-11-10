@@ -1,0 +1,19 @@
+{
+  "name": "Track Coach",
+  "short_name": "Track Coach",
+  "description": "中长跑排课与周计划",
+  "start_url": "/track-coach/",
+  "scope": "/track-coach/",
+  "display": "standalone",
+  "background_color": "#f7f8fb",
+  "theme_color": "#050c34",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/track-coach/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

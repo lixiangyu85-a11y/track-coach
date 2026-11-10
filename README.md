@@ -1,5 +1,9 @@
 # Track Coach
 
+在线使用（手机和电脑浏览器都可以打开）：https://lixiangyu85-a11y.github.io/track-coach/
+
+数据保存在当前浏览器里，设备和浏览器之间不会自动同步。换设备时请用应用内的导出/导入。
+
 中长跑教练用的浏览器排课工具。界面为中文。录入运动员主项与最好成绩后，按 Jack Daniels VDOT 推算训练配速，编排跑课和素质课，再放到周历里看负荷提示。没有后端：数据只存在本机浏览器，可用 JSON 备份导入、导出。
 
 **English.** Track Coach is a training planner for middle- and long-distance running coaches. It stores athlete profiles, estimates Daniels VDOT paces from a personal best, builds running sessions and strength work, and shows them on a weekly plan with load alerts. Data stays in the browser (`localStorage`), with JSON backup import and export. The UI is in Chinese.
