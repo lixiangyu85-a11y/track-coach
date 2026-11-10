@@ -38,50 +38,35 @@ interface Props {
   onSelectAthlete: (id: string) => void
 }
 
-function greetingForNow(): string {
-  const h = new Date().getHours()
-  if (h < 5) return '夜深了'
-  if (h < 11) return '早上好'
-  if (h < 14) return '中午好'
-  if (h < 18) return '下午好'
-  return '晚上好'
-}
-
 const QUICK: {
   id: HomeTabTarget
   title: string
   desc: string
-  tone: 'track' | 'accent' | 'ink' | 'chip'
 }[] = [
   {
     id: 'athletes',
     title: '运动员',
-    desc: '档案 · VDOT · 弱点标记',
-    tone: 'ink',
+    desc: '档案 · VDOT',
   },
   {
     id: 'builder',
     title: '排课',
-    desc: 'Daniels 配速与组合课',
-    tone: 'track',
+    desc: '配速与组合课',
   },
   {
     id: 'conditioning',
     title: '素质',
-    desc: '针对弱点的力量与稳定',
-    tone: 'accent',
+    desc: '弱项力量',
   },
   {
     id: 'week',
     title: '周计划',
-    desc: '日历 · 负荷 · 打卡导出',
-    tone: 'ink',
+    desc: '日历 · 负荷',
   },
   {
     id: 'methods',
     title: '方法库',
-    desc: '课型与组合一览',
-    tone: 'chip',
+    desc: '课型一览',
   },
 ]
 
@@ -174,105 +159,30 @@ export function HomeDashboard({
 
   return (
     <div className="home">
-      <section className="home-hero card">
-        <div className="home-hero-copy">
-          <p className="home-kicker">{greetingForNow()} · Track Coach</p>
-          <h1>
-            {activeAthlete
-              ? `本周盯紧 ${activeAthlete.name}`
-              : '从一位运动员开始'}
-          </h1>
-          <p className="home-lead">
-            {activeAthlete ? (
-              <>
-                {sexLabel(activeAthlete.sex)
-                  ? `${sexLabel(activeAthlete.sex)} · `
-                  : ''}
-                {eventLabel} · PB {formatTime(activeAthlete.pbSeconds)}
-                {vdot != null ? ` · VDOT ${vdot.toFixed(1)}` : ''}
-                {weekMeta
-                  ? ` · ${weekMeta.focus || '本周主题待定'}`
-                  : ' · 本周计划尚未填写主题'}
-              </>
-            ) : (
-              '录入主项与最好成绩后，可自动推算配速区，再排课、排素质、看周负荷。'
-            )}
-          </p>
-          {activeAthlete && vdot != null ? (
-            <EquivRaceLine
-              vdot={vdot}
-              event={activeAthlete.event}
-              showCaveat
-            />
-          ) : null}
-          <div className="home-hero-actions">
-            {activeAthlete ? (
-              <>
-                <button
-                  type="button"
-                  className="primary"
-                  onClick={() => onNavigate('week')}
-                >
-                  打开周计划
-                </button>
-                <button
-                  type="button"
-                  className="ghost solid"
-                  onClick={() => onNavigate('builder')}
-                >
-                  新建跑步课
-                </button>
-                <button
-                  type="button"
-                  className="ghost"
-                  onClick={() => onNavigate('athletes')}
-                >
-                  切换运动员
-                </button>
-                <button
-                  type="button"
-                  className="ghost"
-                  onClick={() => onNavigate('athletes')}
-                >
-                  + 添加运动员
-                </button>
-              </>
-            ) : (
-              <button
-                type="button"
-                className="primary"
-                onClick={() => onNavigate('athletes')}
-              >
-                添加运动员
-              </button>
-            )}
-          </div>
+      <div className="home-stats" aria-label="本周概览">
+        <div className="home-stat">
+          <span className="home-stat-value">{athletes.length}</span>
+          <span className="home-stat-label">运动员</span>
         </div>
-        <aside className="home-hero-stats" aria-label="本周概览">
-          <div className="home-stat">
-            <span className="home-stat-value">{athletes.length}</span>
-            <span className="home-stat-label">运动员</span>
-          </div>
-          <div className="home-stat">
-            <span className="home-stat-value">{weekRuns.length}</span>
-            <span className="home-stat-label">本周跑课</span>
-          </div>
-          <div className="home-stat">
-            <span className="home-stat-value">{weekCond.length}</span>
-            <span className="home-stat-label">本周素质</span>
-          </div>
-          <div
-            className={
-              loadAlerts.length
-                ? 'home-stat home-stat-warn'
-                : 'home-stat home-stat-ok'
-            }
-          >
-            <span className="home-stat-value">{loadAlerts.length}</span>
-            <span className="home-stat-label">负荷提醒</span>
-          </div>
-        </aside>
-      </section>
+        <div className="home-stat">
+          <span className="home-stat-value">{weekRuns.length}</span>
+          <span className="home-stat-label">本周跑课</span>
+        </div>
+        <div className="home-stat">
+          <span className="home-stat-value">{weekCond.length}</span>
+          <span className="home-stat-label">本周素质</span>
+        </div>
+        <div
+          className={
+            loadAlerts.length
+              ? 'home-stat home-stat-warn'
+              : 'home-stat home-stat-ok'
+          }
+        >
+          <span className="home-stat-value">{loadAlerts.length}</span>
+          <span className="home-stat-label">负荷提醒</span>
+        </div>
+      </div>
 
       <section className="home-week card" aria-labelledby="home-week-title">
         <header className="card-head home-week-head">
@@ -281,17 +191,14 @@ export function HomeDashboard({
             <p>
               {weekStart} 起 ·{' '}
               {activeAthlete ? activeAthlete.name : '全部运动员'}
-              {!activeAthlete && athletes.length > 1
-                ? '（未选中时汇总所有人）'
-                : ''}
             </p>
           </div>
           <button
             type="button"
-            className="ghost"
+            className="ghost solid"
             onClick={() => onNavigate('week')}
           >
-            进入周计划
+            周计划
           </button>
         </header>
 
@@ -361,53 +268,122 @@ export function HomeDashboard({
         )}
       </section>
 
-      {athletes.length > 0 && (
-        <section className="home-roster card" aria-labelledby="home-roster-title">
-          <header className="card-head">
-            <h2 id="home-roster-title">快速选人</h2>
-            <p>点选后，排课 / 素质 / 周计划会围绕该运动员</p>
-          </header>
-          <ul className="home-roster-list">
-            {athletes.map((a) => {
-              const label =
-                EVENT_OPTIONS.find((e) => e.id === a.event)?.label ?? a.event
-              const active = activeAthlete?.id === a.id
-              return (
-                <li key={a.id}>
-                  <button
-                    type="button"
-                    className={
-                      active ? 'home-roster-btn active' : 'home-roster-btn'
-                    }
-                    onClick={() => onSelectAthlete(a.id)}
-                    aria-pressed={active}
-                  >
-                    <span className="home-roster-name">{a.name}</span>
-                    <span className="home-roster-meta">
-                      {sexLabel(a.sex) ? `${sexLabel(a.sex)} · ` : ''}
-                      {label} · PB {formatTime(a.pbSeconds)}
-                    </span>
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-      )}
-
-      <section className="home-quick" aria-label="功能入口">
-        {QUICK.map((q) => (
-          <button
-            key={q.id}
-            type="button"
-            className={`home-quick-card tone-${q.tone}`}
-            onClick={() => onNavigate(q.id)}
-          >
-            <span className="home-quick-title">{q.title}</span>
-            <span className="home-quick-desc">{q.desc}</span>
-          </button>
-        ))}
+      <section className="home-context card">
+        <div className="home-context-copy">
+          <h1>
+            {activeAthlete
+              ? activeAthlete.name
+              : '从一位运动员开始'}
+          </h1>
+          <div className="home-context-meta">
+            {activeAthlete ? (
+              <>
+                {sexLabel(activeAthlete.sex)
+                  ? `${sexLabel(activeAthlete.sex)} · `
+                  : ''}
+                {eventLabel} · PB {formatTime(activeAthlete.pbSeconds)}
+                {vdot != null ? ` · VDOT ${vdot.toFixed(1)}` : ''}
+                {weekMeta
+                  ? ` · ${weekMeta.focus || '本周主题待定'}`
+                  : ' · 本周主题待定'}
+                {vdot != null ? (
+                  <EquivRaceLine
+                    vdot={vdot}
+                    event={activeAthlete.event}
+                    showCaveat
+                  />
+                ) : null}
+              </>
+            ) : (
+              '录入主项与成绩后，可推算配速区并排课。'
+            )}
+          </div>
+        </div>
+        <div className="home-context-actions">
+          {activeAthlete ? (
+            <>
+              <button
+                type="button"
+                className="primary"
+                onClick={() => onNavigate('builder')}
+              >
+                新建跑步课
+              </button>
+              <button
+                type="button"
+                className="ghost solid"
+                onClick={() => onNavigate('athletes')}
+              >
+                切换运动员
+              </button>
+              <button
+                type="button"
+                className="ghost"
+                onClick={() => onNavigate('athletes')}
+              >
+                + 添加
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="primary"
+              onClick={() => onNavigate('athletes')}
+            >
+              添加运动员
+            </button>
+          )}
+        </div>
       </section>
+
+      <div className="home-secondary">
+        {athletes.length > 0 && (
+          <section className="home-roster card" aria-labelledby="home-roster-title">
+            <header className="card-head">
+              <h2 id="home-roster-title">快速选人</h2>
+            </header>
+            <ul className="home-roster-list">
+              {athletes.map((a) => {
+                const label =
+                  EVENT_OPTIONS.find((e) => e.id === a.event)?.label ?? a.event
+                const active = activeAthlete?.id === a.id
+                return (
+                  <li key={a.id}>
+                    <button
+                      type="button"
+                      className={
+                        active ? 'home-roster-btn active' : 'home-roster-btn'
+                      }
+                      onClick={() => onSelectAthlete(a.id)}
+                      aria-pressed={active}
+                    >
+                      <span className="home-roster-name">{a.name}</span>
+                      <span className="home-roster-meta">
+                        {sexLabel(a.sex) ? `${sexLabel(a.sex)} · ` : ''}
+                        {label} · PB {formatTime(a.pbSeconds)}
+                      </span>
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+        )}
+
+        <section className="home-quick" aria-label="功能入口">
+          {QUICK.map((q) => (
+            <button
+              key={q.id}
+              type="button"
+              className="home-quick-card"
+              onClick={() => onNavigate(q.id)}
+            >
+              <span className="home-quick-title">{q.title}</span>
+              <span className="home-quick-desc">{q.desc}</span>
+            </button>
+          ))}
+        </section>
+      </div>
     </div>
   )
 }

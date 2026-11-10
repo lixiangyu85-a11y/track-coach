@@ -36,11 +36,7 @@ export function AthletesView({
       <section className="card">
         <header className="card-head">
           <h2>{editing ? '编辑运动员' : '运动员档案'}</h2>
-          <p>
-            {editing
-              ? `正在修改：${editing.name}`
-              : '录入主项与最好成绩，自动推算 VDOT 与训练配速区'}
-          </p>
+          {editing ? <p>正在修改：{editing.name}</p> : null}
         </header>
         <AthleteForm
           key={editing?.id ?? 'new'}
@@ -69,7 +65,7 @@ export function AthletesView({
       <section className="card">
         <header className="card-head">
           <h2>名单</h2>
-          <p>{athletes.length} 人 · 点击选中；点「改」编辑档案</p>
+          <p>{athletes.length} 人</p>
         </header>
         {athletes.length === 0 ? (
           <p className="empty">还没有运动员，先在左侧添加一位。</p>

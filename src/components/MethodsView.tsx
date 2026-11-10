@@ -12,9 +12,7 @@ export function MethodsView() {
     <div className="card">
       <header className="card-head">
         <h2>跑课方法库</h2>
-        <p>
-          基于 Daniels VDOT 配速区（E/M/T/I/R）。周期阶段会对区间做轻微平移。
-        </p>
+        <p>Daniels VDOT 配速区（E/M/T/I/R）</p>
       </header>
 
       <div className="zone-legend">
@@ -77,10 +75,7 @@ export function MethodsView() {
     <div className="card">
       <header className="card-head">
         <h2>组合课模板</h2>
-        <p>
-          上/下阶梯、金字塔、混合组合、专项分解。排课时一键加入多段距离（如
-          200+400+600）。
-        </p>
+        <p>阶梯 / 金字塔 / 混合 / 专项分解</p>
       </header>
       <div className="method-table-wrap">
         <table className="method-table">
@@ -111,10 +106,7 @@ export function MethodsView() {
     <div className="card">
       <header className="card-head">
         <h2>素质弱项模块</h2>
-        <p>
-          训练/比赛暴露问题后，在「素质」页抽取模块组课。参考 WA 核心进展、Run RCT
-          髋/踝方案、足内在肌与后链实践等。
-        </p>
+        <p>在「素质」页抽取模块组课</p>
       </header>
       <div className="method-table-wrap">
         <table className="method-table">

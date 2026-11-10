@@ -224,12 +224,10 @@ export function ConditioningView({
       <section className="card">
         <header className="card-head">
           <h2>日常素质训练</h2>
-          <p>
-            {athlete.name} · 根据训练/比赛暴露的弱项抽取模块，组针对性素质课
-          </p>
+          <p>{athlete.name}</p>
         </header>
 
-        <h3 className="subhead">1. 标记该运动员弱项（档案）</h3>
+        <h3 className="subhead">1. 档案弱项</h3>
         <div className="weakness-grid">
           {WEAKNESS_MODULES.map((m) => (
             <button
@@ -244,9 +242,8 @@ export function ConditioningView({
             </button>
           ))}
         </div>
-        <p className="hint">点击切换；这些弱项会保存在运动员档案里。</p>
 
-        <h3 className="subhead">2. 本次课针对的弱项</h3>
+        <h3 className="subhead">2. 本次课弱项</h3>
         <div className="btn-row tight">
           <button type="button" className="ghost solid" onClick={loadFromMarked}>
             用档案弱项填充
@@ -285,9 +282,7 @@ export function ConditioningView({
                   </button>
                 </header>
                 <p className="muted">{m.purpose}</p>
-                <p className="hint">常见表现：{m.signs.join('；')}</p>
                 <p className="hint">{m.frequencyHint}</p>
-                <p className="footnote">参考：{m.sources}</p>
               </article>
             )
           })}
@@ -295,7 +290,7 @@ export function ConditioningView({
 
         {availableExercises.length > 0 && (
           <>
-            <h3 className="subhead">3. 勾选动作（可只抽部分）</h3>
+            <h3 className="subhead">3. 勾选动作</h3>
             <ul className="exercise-pick">
               {availableExercises.map((x) => (
                 <li key={x.key}>
@@ -327,10 +322,7 @@ export function ConditioningView({
       <section className="card">
         <header className="card-head">
           <h2>{editingSession ? '编辑素质课' : '素质课预览'}</h2>
-          <p>
-            {items.length} 个动作 ·{' '}
-            {editingSession ? '修改后点更新' : '保存后可挂周计划'}
-          </p>
+          <p>{items.length} 个动作</p>
         </header>
 
         <div className="form-grid">

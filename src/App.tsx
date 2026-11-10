@@ -63,10 +63,7 @@ export default function App() {
           <span className="brand-mark" aria-hidden="true">
             TC
           </span>
-          <div>
-            <p className="brand-name">Track Coach</p>
-            <p className="brand-tag">田径 / 公路 / 素质模块</p>
-          </div>
+          <p className="brand-name">Track Coach</p>
         </div>
         <nav className="tabs" aria-label="主导航">
           {TABS.map((t) => (
@@ -94,7 +91,7 @@ export default function App() {
           </div>
           <div className="save-cluster" role="group" aria-label="数据备份">
             <span className="save-status" aria-live="polite">
-              {coach.dirty ? '未保存…' : coach.lastSavedAt ? '已自动保存' : '就绪'}
+              {coach.dirty ? '未保存…' : coach.lastSavedAt ? '已保存' : '就绪'}
             </span>
             <button
               type="button"

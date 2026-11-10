@@ -4,25 +4,28 @@
   --font-body: 'Manrope', sans-serif;
   --font-display: 'Barlow Condensed', sans-serif;
 
-  --ink: #1a2421;
-  --ink-soft: #2c3a35;
-  --muted: #5f6f68;
-  --surface: #f7f4ef;
-  --input: #fffdf9;
-  --chip: #efeae2;
-  --line: #d9d2c6;
-  --track: #c45c26;
-  --accent: #1f7a5c;
+  --ink: #1c2128;
+  --ink-soft: #3a424c;
+  --muted: #6b7380;
+  --page: #f3f4f6;
+  --surface: #ffffff;
+  --input: #ffffff;
+  --chip: #f0f1f3;
+  --line: #e2e5ea;
+  --track: #1f6f5c;
+  --accent: #1f6f5c;
   --danger: #b42318;
+  --warn: #9a6700;
+  --radius: 0.5rem;
+  --radius-sm: 0.35rem;
+  --space: 1rem;
+  --space-sm: 0.65rem;
 
   font-family: var(--font-body);
   line-height: 1.45;
   font-weight: 500;
   color: var(--ink);
-  background:
-    radial-gradient(1200px 500px at 10% -10%, color-mix(in srgb, var(--track) 18%, transparent), transparent 60%),
-    radial-gradient(900px 420px at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 55%),
-    linear-gradient(180deg, #ebe4d8 0%, #f3efe8 40%, #f7f4ef 100%);
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

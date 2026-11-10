@@ -361,10 +361,9 @@ export function SessionBuilder({
           <h2>{editingSession ? '编辑课时' : '课时搭建'}</h2>
           <p>
             {athlete.name} ·{' '}
-            {EVENT_OPTIONS.find((e) => e.id === athlete.event)?.label} PB{' '}
-            {formatTime(athlete.pbSeconds)} · VDOT {vdot.toFixed(1)} · 比赛配速{' '}
-            {formatPacePerKm(racePace)}
-            {editingSession ? ' · 正在修改已存课时' : ''}
+            {EVENT_OPTIONS.find((e) => e.id === athlete.event)?.label} · VDOT{' '}
+            {vdot.toFixed(1)} · {formatPacePerKm(racePace)}
+            {editingSession ? ' · 编辑中' : ''}
           </p>
         </header>
 
