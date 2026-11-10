@@ -229,6 +229,13 @@ export function HomeDashboard({
                 >
                   切换运动员
                 </button>
+                <button
+                  type="button"
+                  className="ghost"
+                  onClick={() => onNavigate('athletes')}
+                >
+                  + 添加运动员
+                </button>
               </>
             ) : (
               <button
